@@ -35,3 +35,5 @@ build/
 *.csv
 *.log
 .mvn/*
+*.cmd
+mvnw
