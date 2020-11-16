@@ -20,6 +20,8 @@ public class ReviewReaderApplicationListener implements ApplicationListener<Appl
     private String loadedFile;
     @Value("${parse.into.path}")
     private String parsedFile;
+    @Value("${file.from.path}")
+    private String fromFile;
 
     private final RoleService roleService;
     private final CsvParserService csvParserService;
@@ -42,8 +44,8 @@ public class ReviewReaderApplicationListener implements ApplicationListener<Appl
 
         log.info("ReviewReaderApplicationListener onApplicationEvent() started . . .");
         try {
-            csvLoaderService.loadCsvFile(csvUrl, loadedFile);
-            csvParserService.parseCsvFile(loadedFile);
+//            csvLoaderService.loadCsvFile(csvUrl, loadedFile);
+            csvParserService.parseCsvFile(fromFile);
         } catch (IOException e) {
             throw new RuntimeException("Failed while parsing CSV file " + loadedFile);
         }

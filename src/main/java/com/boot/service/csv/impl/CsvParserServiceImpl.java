@@ -1,6 +1,7 @@
 package com.boot.service.csv.impl;
 
 
+import com.boot.model.Role;
 import com.boot.model.User;
 import com.boot.repository.RoleRepository;
 import com.boot.repository.UserRepository;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Set;
 
 @Service
 public class CsvParserServiceImpl implements CsvParserService {
@@ -37,11 +39,10 @@ public class CsvParserServiceImpl implements CsvParserService {
             user.setExtended_id(record.get("UserId"));
             user.setPassword("1111");
             user.setName(record.get("ProfileName"));
-//            user.setRoles(Set.of(roleRepository.getOne(2L)));
+            user.setRoles(Set.of(roleRepository.findByRoleName(Role.of("USER").getRoleName()).get()));
 
             userRepository.save(user);
         }
         return true;
     }
 }
-

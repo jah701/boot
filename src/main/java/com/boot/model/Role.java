@@ -17,12 +17,17 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
-    private RoleName role;
+    private RoleName roleName;
+
+    public Role() {
+    }
+
+    public Role(RoleName role) {
+        this.roleName = role;
+    }
 
     public static Role of(String roleName) {
-        Role role = new Role();
-        role.setRole(RoleName.valueOf(roleName));
-        return role;
+        return new Role(RoleName.valueOf(roleName));
     }
 
     public enum RoleName {
