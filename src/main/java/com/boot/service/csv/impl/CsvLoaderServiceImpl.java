@@ -20,7 +20,7 @@ public class CsvLoaderServiceImpl implements CsvLoaderService {
                 fileOutputStream.write(dataBuffer, 0, bytesRead);
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can't load CSV file from " + url, e);
+            throw new RuntimeException("Can't load CSV file from: ' " + url + " '", e);
         }
         return true;
     }
